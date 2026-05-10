@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import pe.edu.idat.biblioteca.constants.ApiConstants;
 import pe.edu.idat.biblioteca.security.CustomAccessDeniedHandler;
 import pe.edu.idat.biblioteca.security.JwtAuthEntryPoint;
 import pe.edu.idat.biblioteca.security.JwtAuthFilter;
@@ -58,12 +59,12 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/v1/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/v1/usuario").permitAll()
-                        .requestMatchers("/v1/rol/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST,"/v1/libro","/v1/prestamo").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET,"/v1/prestamo","/v1/prestamo/{id}","/v1/prestamo/devolucion/{id}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET,"/v1/libro/{id}","/v1/usuario/{id}","/v1/prestamo/usuario/{idUsuario}").hasAnyRole("ADMIN","USER")
-                        .requestMatchers(HttpMethod.PUT,"/v1/libro/{id}","/v1/usuario/{id}").hasAnyRole("ADMIN","USER")
-                        .requestMatchers(HttpMethod.DELETE,"/v1/libro/{id}","/v1/usuario/{id}").hasRole("ADMIN")
+                        .requestMatchers("/v1/rol/**").hasRole(ApiConstants.ADMIN)
+                        .requestMatchers(HttpMethod.POST,"/v1/libro","/v1/prestamo").hasRole(ApiConstants.ADMIN)
+                        .requestMatchers(HttpMethod.GET,"/v1/prestamo","/v1/prestamo/{id}","/v1/prestamo/devolucion/{id}").hasRole(ApiConstants.ADMIN)
+                        .requestMatchers(HttpMethod.GET,ApiConstants.LIBRO_BY_ID,ApiConstants.USUARIO_BY_ID,"/v1/prestamo/usuario/{idUsuario}").hasAnyRole(ApiConstants.ADMIN,ApiConstants.ADMIN)
+                        .requestMatchers(HttpMethod.PUT,ApiConstants.LIBRO_BY_ID,ApiConstants.USUARIO_BY_ID).hasAnyRole(ApiConstants.ADMIN,ApiConstants.USER)
+                        .requestMatchers(HttpMethod.DELETE,ApiConstants.LIBRO_BY_ID,ApiConstants.USUARIO_BY_ID).hasRole(ApiConstants.ADMIN)
                         .anyRequest().authenticated())
                         .exceptionHandling(ex->ex
                                 .accessDeniedHandler(accessDeniedHandler)
