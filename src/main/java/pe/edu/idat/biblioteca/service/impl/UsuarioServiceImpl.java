@@ -14,6 +14,7 @@ import pe.edu.idat.biblioteca.dto.usuario.UsuarioResponse;
 import pe.edu.idat.biblioteca.entity.Rol;
 import pe.edu.idat.biblioteca.entity.Usuario;
 
+import pe.edu.idat.biblioteca.exception.EmailExistException;
 import pe.edu.idat.biblioteca.exception.RolNotFoundException;
 import pe.edu.idat.biblioteca.exception.UsuarioNotFoundException;
 import pe.edu.idat.biblioteca.mapper.UsuarioAdminMapper;
@@ -116,7 +117,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional
     public JwtResponse createUserByAdmin(UsuarioAdminRequest usuarioAdminRequest) {
         if (usuarioRepository.findByEmail(usuarioAdminRequest.email()).isPresent()) {
-            throw new RuntimeException("El email ya está registrado");
+            throw new EmailExistException("El email ya está registrado");
         }
 
         Usuario usuario = usuarioAdminMapper.toEntity(usuarioAdminRequest);

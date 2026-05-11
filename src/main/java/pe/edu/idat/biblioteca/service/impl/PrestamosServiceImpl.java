@@ -67,7 +67,7 @@ public class PrestamosServiceImpl implements PrestamosService {
         return prestamoRepository.findAll()
                 .stream()
                 .map(prestamoMapper::toResponse)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional(readOnly = true)
