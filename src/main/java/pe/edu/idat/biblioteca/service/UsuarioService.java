@@ -1,8 +1,6 @@
 package pe.edu.idat.biblioteca.service;
 
 import pe.edu.idat.biblioteca.dto.UsuarioAdminRequest;
-import pe.edu.idat.biblioteca.dto.UsuarioAdminResponse;
-import pe.edu.idat.biblioteca.dto.auth.AuthResponse;
 import pe.edu.idat.biblioteca.dto.jwt.JwtResponse;
 import pe.edu.idat.biblioteca.dto.usuario.UsuarioRequest;
 import pe.edu.idat.biblioteca.dto.usuario.UsuarioResponse;
