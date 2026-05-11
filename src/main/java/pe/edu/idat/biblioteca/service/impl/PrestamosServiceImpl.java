@@ -76,7 +76,7 @@ public class PrestamosServiceImpl implements PrestamosService {
         return prestamoRepository.findByUsuario_IdUsuario(idUsuario)
                 .stream()
                 .map(prestamoMapper::toResponse)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional
