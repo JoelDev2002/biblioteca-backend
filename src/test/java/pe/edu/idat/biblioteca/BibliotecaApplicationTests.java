@@ -8,6 +8,7 @@ class BibliotecaApplicationTests {
 
     @Test
     void contextLoads() {
+        //verifica que el contexto de Springboot cargue correctamente
     }
 
 }
